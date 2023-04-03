@@ -31,6 +31,7 @@
         <Button Content="Speichern" HorizontalAlignment="Left" Height="43" Margin="589,369,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_1"/>
         <Button x:Name="Löschen" Content="Löschen" HorizontalAlignment="Left" Margin="307,104,0,0" VerticalAlignment="Top" Height="54" Width="89" Click="Löschen_Click"/>
         <Button x:Name="ändern" Content="Ändern" HorizontalAlignment="Left" Height="58" Margin="414,104,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.53,0.505" Click="ändern_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="54" Margin="436,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"><Run Language="de-de" Text="Falz Coach ausgewählt wird ist die andere Rolle nur noch Wichtig um den Eintragen knopf zu aktivieren"/><LineBreak/><Run Language="de-de"/></TextBlock>
 
     </Grid>
 </Window>

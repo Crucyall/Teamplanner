@@ -72,22 +72,45 @@ namespace Teamplanner.Windows
                     teamrolle = item.Content as string;
                 }
             }
-            spielerList.Add(new Spieler()
+            if (teamrolle != "Coach")
             {
-                index = index,
+                spielerList.Add(new Spieler()
+                {
+                    index = index,
 
-                Name = Name.Text,
-                Spielerrolle = spielerrolle,
-                TeamRolle = teamrolle,
-                check = false
-            });
-            spielers.Add(new Spieler()
+                    Name = Name.Text,
+                    Spielerrolle = spielerrolle,
+                    TeamRolle = teamrolle,
+                    check = false
+                });
+                spielers.Add(new Spieler()
+                {
+                    index = index,
+                    Name = Name.Text,
+                    Spielerrolle = spielerrolle,
+                    TeamRolle = teamrolle
+                });
+            }
+            else
             {
-                index= index,
-                Name = Name.Text,
-                Spielerrolle = spielerrolle,
-                TeamRolle = teamrolle
-            });
+                spielerList.Add(new Spieler()
+                {
+                    index = index,
+
+                    Name = Name.Text,
+                    Spielerrolle = teamrolle,
+                    TeamRolle = teamrolle,
+                    check = false
+                });
+                spielers.Add(new Spieler()
+                {
+                    index = index,
+                    Name = Name.Text,
+                    Spielerrolle = teamrolle,
+                    TeamRolle = teamrolle
+                });
+
+            }
             return spielerList;
 
         }
@@ -159,28 +182,14 @@ namespace Teamplanner.Windows
             int nränderungen = 0;
             foreach (Spieler item in Spieler_Liste.ItemsSource)
             {
-                if (item.check != true)
-                {
-                    string message = "Bitte wählen Sie einen Spieler aus";
-                    string caption = "Fehler";
-                    MessageBoxButton buttons = MessageBoxButton.OK;
-                    MessageBox.Show(message, caption, buttons, MessageBoxImage.Error);
-
-                }
-                else if(nränderungen == 1)
-                {
-                    string message = "Es darf nur ein spieler ausgewählt sein";
-                    string caption = "Fehler";
-                    MessageBoxButton buttons = MessageBoxButton.OK;
-                    MessageBox.Show(message, caption, buttons, MessageBoxImage.Error);
-
-                }
-                else
+                if (item.check == true)
                 {
                     Spieleredit spieleredit = new(this);
                     spieleredit.Show();
+                    item.check= false;
                     this.Visibility = Visibility.Hidden;
                     break;
+
                 }
 
             }

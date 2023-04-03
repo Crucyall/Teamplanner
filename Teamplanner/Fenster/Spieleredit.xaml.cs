@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -38,9 +39,11 @@ namespace Teamplanner.Fenster
                         if (radio.Content.ToString() == item.TeamRolle.ToString())
                         {
                             radio.IsChecked = true;
+                            break;
                         }
                     }
                     Name.Text = item.Name;
+                    break;
                 }
             }
         }
@@ -52,18 +55,26 @@ namespace Teamplanner.Fenster
             {
                 if (item.check == true)
                 {
-                    foreach (RadioButton radio in stackPanel.Children)
-                    {
-                        if (radio.IsChecked == true)
-                        {
-                            item.Spielerrolle = radio.Content.ToString();
-                        }
-                    }
                     foreach (RadioButton radio in stack2.Children)
                     {
                         if (radio.IsChecked == true)
                         {
                             item.TeamRolle = radio.Content.ToString();
+                        }
+                    }
+
+                    foreach (RadioButton radio in stackPanel.Children)
+                    {
+                        if (radio.IsChecked == true)
+                        {
+                            if (item.TeamRolle == "Coach")
+                            {
+                                item.Spielerrolle = item.TeamRolle;
+                            }
+                            else
+                            {
+                                item.Spielerrolle = radio.Content.ToString();
+                            }
                         }
                     }
                     item.Name = Name.Text;
