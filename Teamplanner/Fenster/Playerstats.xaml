@@ -1,0 +1,55 @@
+﻿<Window x:Class="Teamplanner.Fenster.Playerstats"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Teamplanner.Fenster"
+        mc:Ignorable="d"
+        Title="Playerstats" Height="494" Width="848" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid x:Name="stats" HorizontalAlignment="Left" Height="159" Margin="170,110,0,0" VerticalAlignment="Top" Width="618" d:ItemsSource="{d:SampleData ItemCount=5}" CellEditEnding="stats_CellEditEnding"/>
+        <StackPanel x:Name="SP" HorizontalAlignment="Left" Height="242" Margin="10,10,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.5,0.5" Background="#FFECECEC">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform AngleX="0" AngleY="0"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0" Y="0"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+        </StackPanel>
+        <Button x:Name="Speichern" Content="Speichern" HorizontalAlignment="Left" Margin="14,280,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="94" Width="100" Click="Speichern_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.22"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <GroupBox HorizontalAlignment="Left" Height="50" Header="Kills" Margin="159,279,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.469,0.57">
+            <TextBox x:Name="Kills" HorizontalAlignment="Left" Margin="1,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="Kills_text" KeyDown="Kills_KeyDown"/>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="50" Header="Deaths" Margin="159,329,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.469,0.57">
+            <TextBox x:Name="Deaths" HorizontalAlignment="Left" Margin="1,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="50" Header="Entry(+/-)" Margin="159,384,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.469,0.57">
+            <TextBox x:Name="Entry" HorizontalAlignment="Left" Margin="1,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="50" Header="KPR" Margin="365,304,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.469,0.57">
+            <TextBox x:Name="KPR" HorizontalAlignment="Left" Margin="1,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="50" Header="Map" Margin="365,359,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.469,0.57">
+            <TextBox x:Name="Map" HorizontalAlignment="Left" Margin="1,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        </GroupBox>
+        <Button x:Name="Eintragen" Content="Eintragen" HorizontalAlignment="Left" Margin="552,304,0,0" VerticalAlignment="Top" Height="105" Width="131" IsEnabled="False" Click="Eintragen_Click"/>
+        <GroupBox HorizontalAlignment="Left" Height="50" Header="Rounds" Margin="365,414,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.469,0.57">
+            <TextBox x:Name="Rounds" HorizontalAlignment="Left" Margin="1,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        </GroupBox>
+        <ScrollViewer Height="92" Margin="151,13,41,0" VerticalAlignment="Top" HorizontalScrollBarVisibility="Visible">
+            <StackPanel x:Name="Matches" Orientation="Horizontal" Background="#FFECECEC" Height="60" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

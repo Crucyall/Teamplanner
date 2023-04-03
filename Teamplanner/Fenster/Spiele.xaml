@@ -1,0 +1,26 @@
+﻿<Window x:Class="Teamplanner.Fenster.Spiele"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Teamplanner.Fenster"
+        mc:Ignorable="d"
+        Title="Spiele" Height="600" Width="820" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF929292">
+        <DataGrid x:Name="matches" HorizontalAlignment="Left" Height="304" Margin="10,10,0,0" VerticalAlignment="Top" Width="728" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="Eintragen" Content="Eintragen" HorizontalAlignment="Left" Margin="521,425,0,0" VerticalAlignment="Top" Width="284" Height="63" Click="Button_Click" RenderTransformOrigin="0.498,0.54"/>
+        <TextBox x:Name="Team1" HorizontalAlignment="Left" Margin="403,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Height="30" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="671,356,0,0" TextWrapping="Wrap" Text="Team2" VerticalAlignment="Top" Height="30" Width="38"/>
+        <TextBox x:Name="Team2" HorizontalAlignment="Left" Margin="671,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Height="30" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="403,356,0,0" TextWrapping="Wrap" Text="Team1" VerticalAlignment="Top" Height="23" Width="38"/>
+        <TextBox x:Name="Score1" HorizontalAlignment="Left" Margin="537,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Height="30" FontSize="16"/>
+        <TextBox x:Name="Score2" HorizontalAlignment="Left" Margin="611,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Height="30" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="603,382,0,0" TextWrapping="Wrap" Text=":" VerticalAlignment="Top" Width="4" Height="20"/>
+        <DataGrid x:Name="PickedPlayer" HorizontalAlignment="Left" Height="158" Margin="10,382,0,0" VerticalAlignment="Top" Width="360" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="Speichern" Content="Speichern" HorizontalAlignment="Left" Height="63" Margin="375,425,0,0" VerticalAlignment="Top" Width="141" Click="Speichern_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="32" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="364" Background="#FFF3F3F3"><Run Text="In der unteren Tabelle, die Spieler mit einem Haken auswählen,"/><Run Language="de-de" Text=" "/><Run Text="die gespielt haben"/></TextBlock>
+        <ComboBox x:Name="maps" HorizontalAlignment="Left" Margin="375,493,0,0" VerticalAlignment="Top" Width="141"/>
+        <Button x:Name="Löschen" Content="Löschen" HorizontalAlignment="Left" Height="46" Margin="555,515,0,0" VerticalAlignment="Top" Width="215" Click="Löschen_Click"/>
+
+    </Grid>
+</Window>
