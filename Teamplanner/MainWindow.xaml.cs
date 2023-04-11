@@ -14,7 +14,7 @@ namespace Teamplanner
     {
         WebClient client = new WebClient();
 
-
+        ladebalken ladebalken;
         speichern speichern = new speichern();
         public string version_temp;
      public   string version_aktuell;
@@ -23,16 +23,34 @@ namespace Teamplanner
         {
 
             InitializeComponent();
-            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "plannersave.db"))
+            try
             {
-                dbDownload(AppDomain.CurrentDomain.BaseDirectory + @"\plannersave.db");
-            }
-            else
-            {
-                versionprüfung test = new();
-                test.version_prüfer(this);
-            }
+                if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "plannersave.db"))
+                {
+                    dbDownload(AppDomain.CurrentDomain.BaseDirectory + @"\plannersave.db");
+                }
+                else
+                {
+                    versionprüfung test = new();
+                    test.version_prüfer(this);
+                }
 
+
+            }
+            catch (Exception)
+            {
+                string message = "Bitte Stellen Sie sicher das Sie eine Verbindung zu dem Internet haben." +
+                    "Wenn Sie einen Proxy benutzen stellen Sie bitte sicher das Das Programm diesen Nutzen kann" +
+                    "Möchten Sie das Programm Schliessen?";
+                string caption = "Achtung";
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                var result = MessageBox.Show(message, caption, buttons, MessageBoxImage.Error);
+                if(result == MessageBoxResult.OK)
+                {
+                    this.Close();
+                }
+                throw;
+            }
 
 
             //var test = speichern.dbladenspielerstats();

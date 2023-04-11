@@ -24,7 +24,6 @@ namespace Teamplanner
                 test.version_temp = reader.GetString(0);
             }
             reader.Close();
-       command.Connection.Close();
             connection.Close();
 
             SQLiteDataReader reader2;
@@ -40,7 +39,6 @@ namespace Teamplanner
                 test.version_aktuell = reader2.GetString(0);
             }
             reader2.Close();
-            command2.Connection.Close();
             connection2.Close();
         }
 
