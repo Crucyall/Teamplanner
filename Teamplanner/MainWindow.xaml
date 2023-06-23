@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teamplanner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="504" WindowStartupLocation="CenterScreen" Closed="Start_Closed">
+        Title="MainWindow" Height="200" Width="504" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="183"/>

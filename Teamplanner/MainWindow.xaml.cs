@@ -29,11 +29,6 @@ namespace Teamplanner
                 {
                     dbDownload(AppDomain.CurrentDomain.BaseDirectory + @"\plannersave.db");
                 }
-                else
-                {
-                    versionprüfung test = new();
-                    test.version_prüfer(this);
-                }
 
 
             }
@@ -87,19 +82,5 @@ namespace Teamplanner
 
         }
 
-        private void Start_Closed(object sender, EventArgs e)
-        {
-            if (version_aktuell == version_temp)
-            {
-
-                File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"plannersavetemp.db");
-            }
-            else 
-            {
-                dbupdate dbupdate = new dbupdate();
-                dbupdate.update(this);
-            }
-
-        }
     }
 }
