@@ -123,11 +123,21 @@ namespace Teamplanner.Windows
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            RadioButton radioButton = sender as RadioButton;
             foreach (RadioButton item in stackPanel.Children)
             {
-                if (item.IsChecked == true)
+                if (item.IsChecked == true || radioButton.Content.ToString() == "Coach")
                 {
                     Eintragen.IsEnabled= true;
+                    if(radioButton.Content.ToString() == "Coach")
+                    {
+                        stackPanel.IsEnabled = false;
+                    }
+                    else
+                    {
+                        stackPanel.IsEnabled = true;
+
+                    }
                 }
             }
 
