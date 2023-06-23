@@ -18,11 +18,11 @@
             <RadioButton Content="IGL" Height="23" Width="96" Checked="RadioButton_Checked_1"/>
         </StackPanel>
         <StackPanel x:Name="stack2" HorizontalAlignment="Left" Height="116" Margin="307,244,0,0" VerticalAlignment="Top" Width="126">
+            <RadioButton Content="Coach" Height="23" Width="96" Checked="RadioButton_Checked"/>
             <RadioButton Content="Captain" Height="23" Width="96" Checked="RadioButton_Checked"/>
             <RadioButton Content="Co-Captain" Height="23" Width="96" Checked="RadioButton_Checked"/>
             <RadioButton Content="Spieler" Height="23" Width="96" Checked="RadioButton_Checked"/>
             <RadioButton Content="Substitution" Height="23" Width="96" Checked="RadioButton_Checked"/>
-            <RadioButton Content="Coach" Height="23" Width="96" Checked="RadioButton_Checked"/>
         </StackPanel>
         <GroupBox HorizontalAlignment="Left" Height="73" Header="Name" Margin="300,26,0,0" VerticalAlignment="Top" Width="354">
             <TextBox x:Name="Name" HorizontalAlignment="Left" Height="48" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328"/>
@@ -30,8 +30,7 @@
         <DataGrid x:Name="Spieler_Liste" HorizontalAlignment="Left" Height="402" Margin="10,10,0,0" VerticalAlignment="Top" Width="285" d:ItemsSource="{d:SampleData ItemCount=5}"/>
         <Button Content="Speichern" HorizontalAlignment="Left" Height="43" Margin="589,369,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_1"/>
         <Button x:Name="Löschen" Content="Löschen" HorizontalAlignment="Left" Margin="307,104,0,0" VerticalAlignment="Top" Height="54" Width="89" Click="Löschen_Click"/>
-        <Button x:Name="ändern" Content="Ändern" HorizontalAlignment="Left" Height="58" Margin="414,104,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.53,0.505" Click="ändern_Click"/>
-        <TextBlock HorizontalAlignment="Left" Height="54" Margin="307,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"><Run Language="de-de" Text="Falls Coach ausgewählt wird ist die andere Rolle nur noch Wichtig um den Eintragen knopf zu aktivieren"/><LineBreak/><Run Language="de-de"/></TextBlock>
+        <Button x:Name="ändern" Content="Ändern" HorizontalAlignment="Left" Height="54" Margin="401,104,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.53,0.505" Click="ändern_Click"/>
 
     </Grid>
 </Window>

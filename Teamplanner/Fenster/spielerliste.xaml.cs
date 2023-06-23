@@ -1,21 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Data;
-using System.Windows.Navigation;
-using System.Security.Cryptography.X509Certificates;
-using static System.Net.Mime.MediaTypeNames;
 using Teamplanner.Fenster;
 
 namespace Teamplanner.Windows
@@ -26,8 +12,8 @@ namespace Teamplanner.Windows
     public partial class spielerliste : Window
     {
         Spieler? spieler;
-       public ObservableCollection<Spieler> spielerList = new();
-        List<Spieler> spielers= new List<Spieler>();
+        public ObservableCollection<Spieler> spielerList = new();
+        List<Spieler> spielers = new List<Spieler>();
         List<Spieler> delete = new List<Spieler>();
 
         speichern speichern = new speichern();
@@ -48,7 +34,7 @@ namespace Teamplanner.Windows
         {
             spielerList = addplayer();
             Spieler_Liste.ItemsSource = spielerList;
-            
+
 
 
         }
@@ -128,16 +114,18 @@ namespace Teamplanner.Windows
             {
                 if (item.IsChecked == true || radioButton.Content.ToString() == "Coach")
                 {
-                    Eintragen.IsEnabled= true;
-                    if(radioButton.Content.ToString() == "Coach")
+                    Eintragen.IsEnabled = true;
+                    if (radioButton.Content.ToString() == "Coach")
                     {
                         stackPanel.IsEnabled = false;
                     }
-                    else
-                    {
-                        stackPanel.IsEnabled = true;
 
-                    }
+                }
+                else
+                {
+                    stackPanel.IsEnabled = true;
+
+
                 }
             }
 
@@ -156,7 +144,7 @@ namespace Teamplanner.Windows
         }
         private void listtoobser()
         {
-            foreach(Spieler item in spielers) 
+            foreach (Spieler item in spielers)
             {
                 spielerList.Add(item);
             }
@@ -171,13 +159,13 @@ namespace Teamplanner.Windows
         private void Löschen_Click(object sender, RoutedEventArgs e)
         {
 
-            foreach(Spieler item in Spieler_Liste.ItemsSource)
+            foreach (Spieler item in Spieler_Liste.ItemsSource)
             {
-                if(item.check == true)
+                if (item.check == true)
                 {
-                   delete.Add(item);
+                    delete.Add(item);
                 }
-                
+
             }
             foreach (Spieler item in delete)
             {
@@ -196,7 +184,7 @@ namespace Teamplanner.Windows
                 {
                     Spieleredit spieleredit = new(this);
                     spieleredit.Show();
-                    item.check= false;
+                    item.check = false;
                     this.Visibility = Visibility.Hidden;
                     break;
 
