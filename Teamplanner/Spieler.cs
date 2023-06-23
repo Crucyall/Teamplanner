@@ -11,6 +11,8 @@ namespace Teamplanner
 
         public bool check { get; set; }
 
+        public string team { get; set; }
+
         //public Spieler()
         //{ }
 
