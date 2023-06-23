@@ -94,6 +94,11 @@ namespace Teamplanner
 
                 File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"plannersavetemp.db");
             }
+            else 
+            {
+                dbupdate dbupdate = new dbupdate();
+                dbupdate.update(this);
+            }
 
         }
     }
