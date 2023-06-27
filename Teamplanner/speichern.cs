@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
+using System.Data.SQLite;
+using System.Windows.Documents;
 
 namespace Teamplanner
 {
     internal class speichern
     {
-        List<Spieler> speichers=new();
+        List<Spieler> speichers = new();
         List<Spielec> speichersc = new();
         List<Spielerstats> speicherstats = new();
         public void indbspeichernplayer(List<Spieler> spieler)
@@ -20,8 +17,9 @@ namespace Teamplanner
             connection.Open();
             SQLiteCommand command = new SQLiteCommand(connection);
 
-            foreach (Spieler item in spieler) {
-                command.CommandText = String.Format("REPLACE into Spieler(ID,Name,Spielerrolle,Teamrolle) values ('{0}','{1}','{2}','{3}')", item.index, item.Name, item.Spielerrolle, item.TeamRolle,item.index);
+            foreach (Spieler item in spieler)
+            {
+                command.CommandText = String.Format("REPLACE into Spieler(ID,Name,Spielerrolle,Teamrolle,Team) values ('{0}','{1}','{2}','{3}','{4}')", item.index, item.Name, item.Spielerrolle, item.TeamRolle, item.team);
                 command.ExecuteNonQuery();
             }
 
@@ -40,11 +38,11 @@ namespace Teamplanner
 
             command.CommandText = String.Format("SELECT * FROM Spieler");
 
-          reader = command.ExecuteReader();
+            reader = command.ExecuteReader();
 
-            while(reader.Read()) 
+            while (reader.Read())
             {
-                speichers.Add(new Spieler() { Name = reader["name"].ToString(),Spielerrolle = reader["Spielerrolle"].ToString(),TeamRolle = reader["Teamrolle"].ToString(), index = Convert.ToInt32(reader["ID"].ToString()),check=checkBox});
+                speichers.Add(new Spieler() { Name = reader["name"].ToString(), Spielerrolle = reader["Spielerrolle"].ToString(), TeamRolle = reader["Teamrolle"].ToString(), index = Convert.ToInt32(reader["ID"].ToString()), check = checkBox, team = reader["Team"].ToString() });
 
             }
             reader.Close();
@@ -61,7 +59,7 @@ namespace Teamplanner
 
             foreach (Spielec item in spieler)
             {
-                command.CommandText = String.Format("REPLACE into Spiele(ID,Team1,Score1,Score2,Team2,Players,Map) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", item.index, item.Team1, item.Score1, item.Score2, item.Team2,item.players,item.map);
+                command.CommandText = String.Format("REPLACE into Spiele(ID,Team1,Score1,Score2,Team2,Players,Map) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", item.index, item.Team1, item.Score1, item.Score2, item.Team2, item.players, item.map);
                 command.ExecuteNonQuery();
             }
 
@@ -84,8 +82,16 @@ namespace Teamplanner
 
             while (reader.Read())
             {
-                speichersc.Add(new Spielec() { Team1 = reader["Team1"].ToString(), Score1 = Convert.ToInt32(reader["Score1"].ToString()), Score2 = Convert.ToInt32(reader["Score2"].ToString()),
-                    Team2 = reader["Team2"].ToString(),players = reader["Players"].ToString(),map = reader["Map"].ToString(),index = Convert.ToInt32(reader["ID"].ToString()),check = false
+                speichersc.Add(new Spielec()
+                {
+                    Team1 = reader["Team1"].ToString(),
+                    Score1 = Convert.ToInt32(reader["Score1"].ToString()),
+                    Score2 = Convert.ToInt32(reader["Score2"].ToString()),
+                    Team2 = reader["Team2"].ToString(),
+                    players = reader["Players"].ToString(),
+                    map = reader["Map"].ToString(),
+                    index = Convert.ToInt32(reader["ID"].ToString()),
+                    check = false
                 });
 
             }
@@ -102,7 +108,7 @@ namespace Teamplanner
 
             foreach (Spielerstats item in spielerstats)
             {
-                command.CommandText = String.Format("REPLACE into SpielerStats(ID,Name,Kills,Death,Entry,KPR,Map,Rounds) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')",item.matchid ,item.name, item.kills, item.deaths, item.entry, item.kpr, item.map,item.rounds);
+                command.CommandText = String.Format("REPLACE into SpielerStats(ID,Name,Kills,Death,Entry,KPR,Map,Rounds) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", item.matchid, item.name, item.kills, item.deaths, item.entry, item.kpr, item.map, item.rounds);
                 command.ExecuteNonQuery();
             }
 
@@ -151,10 +157,10 @@ namespace Teamplanner
             connection.Open();
             SQLiteCommand command = new SQLiteCommand(connection);
 
-            
-                command.CommandText = String.Format("DELETE from Spieler Where ID =" + spieler.index);
-                command.ExecuteNonQuery();
-            
+
+            command.CommandText = String.Format("DELETE from Spieler Where ID =" + spieler.index);
+            command.ExecuteNonQuery();
+
 
             connection.Close();
 
@@ -176,7 +182,49 @@ namespace Teamplanner
             connection.Close();
 
         }
+        public void indbspeichernteams(Team team)
+        {
+            SQLiteConnection connection = new SQLiteConnection("Data Source = plannersave.db");
+            connection.Open();
+            SQLiteCommand command = new SQLiteCommand(connection);
 
+
+            command.CommandText = String.Format("REPLACE into Teams(Name,Besitzer,Spieleranzahl) values ('{0}','{1}','{2}')",team.Name,team.Owner,0);
+            command.ExecuteNonQuery();
+
+
+            connection.Close();
+
+        }
+        public List<Team> teamladen()
+        {
+            Team team = new Team();
+            List<Team> twsat= new List<Team>();
+            SQLiteDataReader reader;
+
+            SQLiteConnection connection = new SQLiteConnection("Data Source = plannersave.db");
+            connection.Open();
+            SQLiteCommand command = new SQLiteCommand(connection);
+
+            command.CommandText = String.Format("SELECT * FROM Teams");
+
+            reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                twsat.Add(team = new Team()
+                {
+                    Name = reader["Name"].ToString(),
+                    Owner = reader["Besitzer"].ToString(),
+                    membercount = Convert.ToInt32(reader["Spieleranzahl"].ToString()),
+                });
+
+            }
+            reader.Close();
+            connection.Close();
+            return twsat;
+
+        }
 
 
     }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SQLite;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Windows;
@@ -16,21 +16,46 @@ namespace Teamplanner
 
         ladebalken ladebalken;
         speichern speichern = new speichern();
+        Team_Erstellen team;
         public string version_temp;
-     public   string version_aktuell;
-
+        public string version_aktuell;
+        public bool test;
+        List<Team> teamss;
+        Team_Liste team_liste;
         public MainWindow()
         {
 
             InitializeComponent();
+            test = false;
+            teamss = speichern.teamladen();
+            if (teamss.Count == 0)
+            {
+                while (test != true)
+                {
+                    team = new Team_Erstellen(this);
+                    team.ShowDialog();
+                    if (!test)
+                    {
+                        string message = "Sie müssen ein Team einrichten damit Sie weiter machen können.\nWollen sie das Programm Schliessen";
+                        string caption = "Achtung";
+                        MessageBoxButton buttons = MessageBoxButton.YesNo;
+                        var result = MessageBox.Show(message, caption, buttons, MessageBoxImage.Error);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            this.Close();
+                            test = true;
+                        }
+
+                    }
+                }
+            }
+
             try
             {
                 if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "plannersave.db"))
                 {
                     dbDownload(AppDomain.CurrentDomain.BaseDirectory + @"\plannersave.db");
                 }
-
-
             }
             catch (Exception)
             {
@@ -40,7 +65,7 @@ namespace Teamplanner
                 string caption = "Achtung";
                 MessageBoxButton buttons = MessageBoxButton.OK;
                 var result = MessageBox.Show(message, caption, buttons, MessageBoxImage.Error);
-                if(result == MessageBoxResult.OK)
+                if (result == MessageBoxResult.OK)
                 {
                     this.Close();
                 }
@@ -63,7 +88,7 @@ namespace Teamplanner
 
         public void dbDownload(string pfad)
         {
-            client.DownloadFile(new Uri(@"https://raw.githubusercontent.com/Crucyall/Teamplanner/master/plannersave.db"),pfad );
+            client.DownloadFile(new Uri(@"https://raw.githubusercontent.com/Crucyall/Teamplanner/master/plannersave.db"), pfad);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -82,5 +107,10 @@ namespace Teamplanner
 
         }
 
+        private void teams_Click(object sender, RoutedEventArgs e)
+        {
+            team_liste = new Team_Liste(this);
+            team_liste.Show();
+        }
     }
 }

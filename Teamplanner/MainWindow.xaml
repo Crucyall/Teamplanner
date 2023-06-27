@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Teamplanner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="504" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="MainWindow" Height="220" Width="504" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,-6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="183"/>
             <ColumnDefinition Width="Auto" MinWidth="321"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Spieler" HorizontalAlignment="Left" Height="96" Margin="24,0,0,0" VerticalAlignment="Center" Width="114" Click="Button_Click"/>
-        <Button Content="Ergebnisse" HorizontalAlignment="Left" Height="96" Margin="6,0,0,0" VerticalAlignment="Center" Width="114" Click="Button_Click_1" Grid.Column="1"/>
-        <Button x:Name="SPStats" Content="Spieler Stats" HorizontalAlignment="Left" Height="96" Margin="176,0,0,0" VerticalAlignment="Center" Width="114" Grid.Column="1" Click="SPStats_Click"/>
+        <Button Content="Spieler" HorizontalAlignment="Left" Height="96" Margin="31,10,0,0" VerticalAlignment="Top" Width="114" Click="Button_Click"/>
+        <Button Content="Ergebnisse" HorizontalAlignment="Left" Height="96" Margin="13,10,0,0" VerticalAlignment="Top" Width="114" Click="Button_Click_1" Grid.Column="1"/>
+        <Button x:Name="SPStats" Content="Spieler Stats" HorizontalAlignment="Left" Height="96" Margin="183,10,0,0" VerticalAlignment="Top" Width="114" Grid.Column="1" Click="SPStats_Click"/>
+        <Button x:Name="teams" Content="Teams" HorizontalAlignment="Left" Margin="31,123,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="449" Height="52" Click="teams_Click"/>
     </Grid>
 </Window>

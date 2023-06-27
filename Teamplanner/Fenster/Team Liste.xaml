@@ -1,0 +1,14 @@
+﻿<Window x:Class="Teamplanner.Fenster.Team_Liste"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Teamplanner.Fenster"
+        mc:Ignorable="d"
+        Title="Team_Liste" Height="450" Width="539">
+    <Grid>
+        <DataGrid x:Name="teamlist" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,10,249,10"/>
+        <Button x:Name="erstellen" Content="Erstellen" HorizontalAlignment="Left" Height="44" Margin="290,364,0,0" VerticalAlignment="Top" Width="229" Click="erstellen_Click"/>
+
+    </Grid>
+</Window>

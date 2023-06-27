@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Teamplanner.Fenster
 {
@@ -19,14 +7,21 @@ namespace Teamplanner.Fenster
     /// </summary>
     public partial class Team_Erstellen : Window
     {
-        public Team_Erstellen()
+        MainWindow mains;
+        speichern safe;
+        public Team_Erstellen(MainWindow main)
         {
             InitializeComponent();
+            mains = main;
+            safe = new speichern();
         }
 
-        private void speichern_Click()
+        private void speichern_Click(object sender, RoutedEventArgs e)
         {
-
+            mains.test = true;
+            Team team = new Team() { Name = Name.Text, Owner = Owner.Text };
+            safe.indbspeichernteams(team);
+            this.Close();
         }
     }
 }

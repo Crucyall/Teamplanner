@@ -29,6 +29,13 @@ namespace Teamplanner.Windows
             listtoobser();
             Spieler_Liste.ItemsSource = spielerList;
             tests = test;
+            ObservableCollection<string> teamname= new ObservableCollection<string>();
+            foreach(Team item in speichern.teamladen())
+            {
+                teamname.Add(item.Name);
+            }
+            teamlists.ItemsSource = teamname;
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -44,57 +51,77 @@ namespace Teamplanner.Windows
             string spielerrolle = "";
             string teamrolle = "";
             int index = spielerList.Count + 1;
-            foreach (RadioButton item in stackPanel.Children)
+            if (teamlists.Text != "")
             {
-                if (item.IsChecked == true)
+                foreach (RadioButton item in stackPanel.Children)
                 {
-                    spielerrolle = item.Content as string;
+                    if (item.IsChecked == true)
+                    {
+                        spielerrolle = item.Content as string;
+                    }
                 }
-            }
-            foreach (RadioButton item in stack2.Children)
-            {
-                if (item.IsChecked == true)
+                foreach (RadioButton item in stack2.Children)
                 {
-                    teamrolle = item.Content as string;
+                    if (item.IsChecked == true)
+                    {
+                        teamrolle = item.Content as string;
+                    }
                 }
-            }
-            if (teamrolle != "Coach")
-            {
-                spielerList.Add(new Spieler()
+                if (teamrolle != "Coach")
                 {
-                    index = index,
+                    spielerList.Add(new Spieler()
+                    {
+                        index = index,
 
-                    Name = Name.Text,
-                    Spielerrolle = spielerrolle,
-                    TeamRolle = teamrolle,
-                    check = false
-                });
-                spielers.Add(new Spieler()
+                        Name = Name.Text,
+                        Spielerrolle = spielerrolle,
+                        TeamRolle = teamrolle,
+                        check = false,
+                        team = teamlists.Text
+                    });
+                    spielers.Add(new Spieler()
+                    {
+                        index = index,
+                        Name = Name.Text,
+                        Spielerrolle = spielerrolle,
+                        TeamRolle = teamrolle,
+                        check = false,
+                        team = teamlists.Text
+
+                    });
+                }
+                else
                 {
-                    index = index,
-                    Name = Name.Text,
-                    Spielerrolle = spielerrolle,
-                    TeamRolle = teamrolle
-                });
+                    spielerList.Add(new Spieler()
+                    {
+                        index = index,
+
+                        Name = Name.Text,
+                        Spielerrolle = teamrolle,
+                        TeamRolle = teamrolle,
+                        check = false,
+                        team = teamlists.Text
+
+                    });
+                    spielers.Add(new Spieler()
+                    {
+                        index = index,
+                        Name = Name.Text,
+                        Spielerrolle = teamrolle,
+                        TeamRolle = teamrolle,
+                        check = false,
+                        team = teamlists.Text
+
+                    });
+
+                }
             }
             else
             {
-                spielerList.Add(new Spieler()
-                {
-                    index = index,
-
-                    Name = Name.Text,
-                    Spielerrolle = teamrolle,
-                    TeamRolle = teamrolle,
-                    check = false
-                });
-                spielers.Add(new Spieler()
-                {
-                    index = index,
-                    Name = Name.Text,
-                    Spielerrolle = teamrolle,
-                    TeamRolle = teamrolle
-                });
+                string message = "Bitte eine Team auswählen";
+                string caption = "Fehler";
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                MessageBox.Show(message, caption, buttons, MessageBoxImage.Error);
 
             }
             return spielerList;

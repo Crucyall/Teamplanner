@@ -8,5 +8,10 @@ namespace Teamplanner
 {
     class Team
     {
+        public string Name { get; set; }
+        public string Owner { get; set; }
+        public int membercount { get; set; }
+
+
     }
 }
