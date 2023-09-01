@@ -112,5 +112,10 @@ namespace Teamplanner
             team_liste = new Team_Liste(this);
             team_liste.Show();
         }
+
+        private void Start_Closed(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

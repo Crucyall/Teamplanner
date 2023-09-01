@@ -189,7 +189,7 @@ namespace Teamplanner
             SQLiteCommand command = new SQLiteCommand(connection);
 
 
-            command.CommandText = String.Format("REPLACE into Teams(Name,Besitzer,Spieleranzahl) values ('{0}','{1}','{2}')",team.Name,team.Owner,0);
+            command.CommandText = String.Format("REPLACE into Teams( ID,Name,Besitzer,Spieleranzahl) values ({0},'{1}','{2}','{3}')",team.id,team.Name,team.Owner,team.membercount);
             command.ExecuteNonQuery();
 
 
@@ -214,6 +214,7 @@ namespace Teamplanner
             {
                 twsat.Add(team = new Team()
                 {
+                    id =Convert.ToInt32( reader["ID"].ToString()),
                     Name = reader["Name"].ToString(),
                     Owner = reader["Besitzer"].ToString(),
                     membercount = Convert.ToInt32(reader["Spieleranzahl"].ToString()),

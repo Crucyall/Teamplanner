@@ -18,8 +18,10 @@ namespace Teamplanner.Fenster
 
         private void speichern_Click(object sender, RoutedEventArgs e)
         {
+            var test = safe.teamladen();
+            
             mains.test = true;
-            Team team = new Team() { Name = Name.Text, Owner = Owner.Text };
+            Team team = new Team() { id = test.Count+1,Name = Name.Text, Owner = Owner.Text };
             safe.indbspeichernteams(team);
             this.Close();
         }

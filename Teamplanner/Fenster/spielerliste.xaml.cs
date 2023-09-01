@@ -124,6 +124,16 @@ namespace Teamplanner.Windows
                 MessageBox.Show(message, caption, buttons, MessageBoxImage.Error);
 
             }
+               
+            foreach(Team item in speichern.teamladen())
+            {
+                if(item.Name == teamlists.Text)
+                {
+                    item.membercount += 1;
+                    speichern.indbspeichernteams(item);
+                }
+            }
+
             return spielerList;
 
         }

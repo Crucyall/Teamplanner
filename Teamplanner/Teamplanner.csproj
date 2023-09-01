@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Unbenannt.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Unbenannt.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="InteractiveDataDisplay.NetCore.WPF" Version="1.0.2" />
